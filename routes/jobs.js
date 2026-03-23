@@ -1,11 +1,11 @@
 import { Router } from "express"
-import { create, getAll, getById, remove, replace, update } from "../controllers/controllers.js"
+import { JobController } from "../controllers/controllers.js"
 
 export const jobsRouter = Router()
 
-jobsRouter.get('/', getAll)
-jobsRouter.get('/:id', getById)
-jobsRouter.post('/', create )
-jobsRouter.put('/:id', replace)
-jobsRouter.patch('/:id', update)
-jobsRouter.delete('/:id', remove)
+jobsRouter.get('/', JobController.getAll)
+jobsRouter.get('/:id', JobController.getById)
+jobsRouter.post('/', JobController.create)
+jobsRouter.put('/:id', JobController.replace)
+jobsRouter.patch('/:id', JobController.update)
+jobsRouter.delete('/:id', JobController.remove)
