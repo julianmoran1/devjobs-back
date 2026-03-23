@@ -1,0 +1,19 @@
+import express from 'express'
+import { corsMiddleware } from './middlewares/cors.js'
+import 'dotenv/config'
+import { jobsRouter } from './routes/jobs.js'
+
+const PORT = process.env.PORT ?? 1234
+const app = express()
+app.use(corsMiddleware())
+app.use(express.json())
+
+app.get('/', (request, response) => {
+  return response.send('Hola hola')
+})
+
+app.use('/jobs', jobsRouter)
+
+app.listen(PORT, () => {
+  console.log(`servidor levantado en http://localhost:${PORT}`)
+})
