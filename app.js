@@ -9,7 +9,7 @@ app.use(corsMiddleware())
 app.use(express.json())
 
 app.get('/', (request, response) => {
-  return response.send('Hola hola')
+  return response.send('Punto de entrada')
 })
 
 app.use('/jobs', jobsRouter)

@@ -43,7 +43,7 @@ const healthMiddleware = (request, response, next) => {
 }
 
 app.get('/', (request, response) => {
-  return response.send('Hola hola')
+  return response.send('Punto de entrada')
 })
 
 
