@@ -15,6 +15,10 @@ export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => {
         return callback(null, true)
       }
 
+      if (origin && origin.includes('vercel.app') && origin.includes('devjobs-front')) {
+        return callback(null, true)
+      }
+
       return callback(new Error('Origen no permitido'))
     }
   })
