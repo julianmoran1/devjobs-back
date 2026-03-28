@@ -5,7 +5,7 @@ const ACCEPTED_ORIGINS = [
   'http://localhost:3000',
   'http://localhost:1234',
   'http://localhost:1111',
-  'https://devjobs-front1.vercel.app'
+  'https://devjobs-front-sigma.vercel.app'
 ]
 
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => {
