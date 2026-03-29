@@ -14,7 +14,7 @@ app.get('/', (request, response) => {
 
 app.use('/jobs', jobsRouter)
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production' || process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`servidor levantado en http://localhost:${PORT}`)
   })
