@@ -1,4 +1,3 @@
-process.loadEnvFile()
 import { Router } from "express";
 import OpenAi from 'openai'
 import { JobModel } from "../models/job.js";
@@ -6,9 +5,11 @@ import { CONFIG } from "../config.js";
 
 export const aiRouter = Router()
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 const openai = new OpenAi({
-  apiKey: process.env.OPENAI_API_KEY || 'ollama',
-  baseURL: process.env.OPENAI_BASE_URL || 'http://localhost:11434/v1'
+  apiKey: isProduction ? process.env.OPENAI_API_KEY : (process.env.OPENAI_API_KEY || 'ollama'),
+  baseURL: isProduction ? (process.env.OPENAI_BASE_URL || 'https://api.groq.com/openai/v1') : (process.env.OPENAI_BASE_URL || 'http://localhost:11434/v1')
 })
 
 aiRouter.get('/summary/:id', async (req, res) => {
