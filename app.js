@@ -6,6 +6,9 @@ import { aiRouter } from './routes/ai.js'
 
 const PORT = process.env.PORT ?? 1234
 const app = express()
+
+app.set('trust proxy', 1)
+
 app.use(corsMiddleware())
 app.use(express.json())
 
