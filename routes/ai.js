@@ -45,7 +45,7 @@ aiRouter.get('/summary/:id', async (req, res) => {
 
   try {
 
-    res.setHeader('Content-Type', 'text/plain; charset-utf-8')
+    res.setHeader('Content-Type', 'text/plain; charset=utf=8')
     res.setHeader('Transfer-Encoding', 'chunked')
     const stream = await openai.chat.completions.create({
       messages: [
