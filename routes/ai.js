@@ -65,7 +65,7 @@ aiRouter.get('/summary/:id', async (req, res) => {
     for await (const part of stream) {
       const content = part.choices[0].delta.content
       if (content) {
-        res.write(content)
+        res.write(content, 'utf-8');
       }
     }
 
