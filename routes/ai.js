@@ -2,8 +2,18 @@ import { Router } from "express";
 import OpenAi from 'openai'
 import { JobModel } from "../models/job.js";
 import { CONFIG } from "../config.js";
+import rateLimit from "express-rate-limit";
+
+const aiRateLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  limit: 5,
+  message: { message: 'Too many requests' },
+  legacyHeaders: false,
+  standardHeaders: 'draft-8'
+})
 
 export const aiRouter = Router()
+aiRouter.use(aiRateLimiter)
 
 const isProduction = process.env.NODE_ENV === 'production'
 
