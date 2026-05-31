@@ -40,4 +40,23 @@ describe('GET /jobs', () => {
     const json = await response.json()
     assert.ok(json.id, validJobId)
   })
+
+  test('respond with status code 200 and jobs filtered by technology', async () => {
+    const tech = 'react'
+    const response = await fetch(`${BASE_URL}/jobs?technology=${tech}`)
+    assert.strictEqual(response.status, 200)
+
+    const json = await response.json()
+    assert.ok(Array.isArray(json.data), 'response must contain a data array')
+    assert.ok(json.data.length > 0, 'should return at least one job for the given technology')
+
+    for (const job of json.data) {
+      const technologies = job.data?.technology?.map(t => t.toLowerCase()) || []
+      assert.ok(
+        technologies.some(t => t.includes(tech.toLowerCase())),
+        `Job ${job.id} does not contain technology matching ${tech}`
+      )
+    }
+  })
 })
+
